@@ -29,8 +29,23 @@
 
 {% endif %}
 
+<hr>
 
-<h1>Projects Template</h1>
+<h1>Projects</h1>
+
+<ul>
+    {% for project in projects %}
+    <!-- NOT RECOMMENDED BY DJANGO -->
+    <!-- <li><a href="/project/{{project.id}}">Title: {{ project.title }} --- {{project.description }}</a></li> -->
+    <!-- RECOMMENDED BY DJANGO -->
+    <li><a href="{% url 'project' project.id %}">Title: {{ project.title }} --- {{project.description }}</a></li>
+    <!-- SYNTAX > {% url 'NAME_WE_PASSED_IN_URLS.PY_PATH' DYNAMIC_VALUE%} -->
+    <!-- URLS.PY path('project/<str:pk>', views.project, name="project") -->
+    <!-- ADVANTAGES > Even we change the path example > project to project-object 
+        LINK wont work> we have to change manually
+        NAME will not be changed -->
+    {% endfor %}
+</ul>
 
 <p>PATH > [OUR APP FOLDER]/templates/[OUR APP FOLDER NAME]</p>
 <p>Mostly main.html and navbar.html will stay in [ROOT DIR]/templates</p>
